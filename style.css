@@ -46,7 +46,10 @@ h1{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     grid-column: span 4;
     text-align: right;
-    background-color: greenyellow;
+    background-color: rgb(175, 190, 152);
+}
+#clear{
+    grid-column: span 2;
 }
 
 
