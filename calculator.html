@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
@@ -8,6 +11,7 @@
 
 </title>
 <body>
+    <h1>CALCULOTRON 2000</h1>
     <div class="container">
         <div class = "calcContainer">
         
@@ -98,6 +102,8 @@ const back=document.getElementById("Backspace")
 
 window.addEventListener("keydown",function(event){
     if (event.key==="-" && (upperNum.length===0 || LastOp!==undefined )){plusMinus.click()}
+    if (event.key==="*"){document.getElementById("X").click()}
+
     
         
 
