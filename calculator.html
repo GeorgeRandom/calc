@@ -103,7 +103,7 @@ const back=document.getElementById("Backspace")
 window.addEventListener("keydown",function(event){
     
     if (event.key==="*"){document.getElementById("X").click()}
-    if (event.key==="-" && (upperNum.length===0 || LastOp!==undefined )){plusMinus.click()}
+    else if (event.key==="-" && (upperNum.length===0 || LastOp!==undefined )){plusMinus.click()}
 
     
         
