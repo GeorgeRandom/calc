@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<title>
+
+</title>
+<body>
+    <div class="container">
+        <div class = "calcContainer">
+        
+        <div id="display">
+            123467984
+            
+            
+        </div>
+        <div id="rien"></div>
+        
+        <button class="button" id="clear">CLEAR</button>
+        <button class="button" id="+-">+/-</button>
+        <button class="button" id="back">back</button>
+            
+
+        <button class="button digit" id="7">7</button>
+        <button class="button digit" id="8">8</button>
+        <button class="button digit" id="9">9</button>
+        <button class="button operator" id="/">/</button>
+            
+            
+            
+        <button class="button digit" id="4">4</button>
+        <button class="button digit" id="5">5</button>
+        <button class="button digit" id="6">6</button>
+        <button class="button operator" id="X">X</button>
+            
+            
+            
+        <button class="button digit" id="1">1</button>
+        <button class="button digit" id="2">2</button>
+        <button class="button digit" id="3">3</button>
+        <button class="button operator" id="-">-</button>
+
+            
+
+            
+        <button class="button digit" id="0">0</button>
+        <button class="button" id="dot">.</button>
+        <button class="button" id="equal">=</button>
+        <button class="button operator" id="+">+</button>
+
+            
+            
+            
+            
+            
+            
+            
+            
+
+        
+    </div>
+
+
+
+    </div>
+
+
+</body>
+<script>
+var LastNum
+var LastOp
+
+const disp = document.getElementById("display");
+const digits = document.querySelectorAll(".digit");
+const operators= document.querySelectorAll(".operator");
+
+digits.forEach(function(currentDig){
+    currentDig.addEventListener('click', function(currentDig){
+        reveal(currentDig)
+        }
+    )
+    });
+operators.forEach(function(currentOp){
+currentOp.addEventListener('click', function(currentOp){
+        storeOp(currentOp)
+        }
+    )
+    });
+        
+
+
+
+function reveal(currentDig){
+    LastNum = currentDig.target.id
+    disp.textContent += LastNum
+}
+function storeOp(currentOp){
+    LastOp = currentOp.target.id
+    disp.appendChild(document.createElement("br"))
+    disp.textContent += ` ${LastOp}`
+}
+
+
+
+
+
+function add(a,b){
+    return a+b
+}
+function substract(a,b){
+    return a-b
+}
+function mult(a,b){
+    return a*b
+}
+function divide(a,b){
+    if (b!==0) return a/b
+    else panic()
+}
+function panic(){alert("AAARGH")}
+
+function operate(a,b,c){
+    if (c==="add") return add(a,b);
+    if (c==="sub") return substract(a,b);
+    if (c==="divide") return divide(a,b);
+    if (c==="mult") return mult(a,b);
+}
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
