@@ -21,11 +21,11 @@
             
             
         </div>
-        <div id="rien"></div>
+        <button class= "button" id="rien"> </button>
         
         <button class="button" id="clear">CLEAR</button>
         <button class="button" id="plusmin">+/-</button>
-        <button class="button" id="back">back</button>
+        <button class="button" id="Backspace">back</button>
             
 
         <button class="button digit" id="7">7</button>
@@ -91,7 +91,24 @@ const operators= document.querySelectorAll(".operator");
 const equal=document.getElementById("equal");
 const clearBtn=document.getElementById("clear")
 const plusMinus=document.getElementById("plusmin")
-const back=document.getElementById("back")
+const back=document.getElementById("Backspace")
+
+
+
+
+window.addEventListener("keydown",function(event){
+    if (event.key==="-" && (upperNum.length===0 || LastOp!==undefined )){plusMinus.click()}
+    
+        
+
+
+    else if (document.getElementById(`${event.key}`)!==null ){
+    console.log(event)
+        document.getElementById(`${event.key}`).click()}
+    else if(event.key==="Enter"){equal.click()}
+    
+
+})
 
 
 
@@ -103,7 +120,8 @@ digits.forEach(function(currentDig){
     });
 operators.forEach(function(currentOp){
 currentOp.addEventListener('click', function(currentOp){
-        storeOp(currentOp)
+    if (upperNum.length!==0){
+        storeOp(currentOp)}
         }
     )
     });
@@ -118,6 +136,7 @@ equal.addEventListener('click',function(){
         LineSwitch=0
         isResult = 1
         b = 0
+        LastOp=undefined
         }
         
         
