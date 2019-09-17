@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="style2.css">
+
+</head>
+<title>
+
+</title>
+<body>
+    <h1>!! CALCULOTRON 2000 !!</h1>
+    <div class="container">
+        <div class = "calcContainer">
+        
+        <div id="display">
+            <div id="disp1">
+            
+            </div>
+            <div id="disp2">  </div>
+            <div id="disp3">  </div>
+
+            
+            
+        </div>
+        
+        
+        <button class="button" id="clear">CLEAR</button>
+        <button class="button" id="plusmin">+/-</button>
+        <button class="button" id="Backspace"> &nbsp;&nbsp;Back&nbsp;&nbsp; </button>
+            
+
+        <button class="button digit" id="7">7</button>
+        <button class="button digit" id="8">8</button>
+        <button class="button digit" id="9">9</button>
+        <button class="button operator" id="/">/</button>
+            
+            
+            
+        <button class="button digit" id="4">4</button>
+        <button class="button digit" id="5">5</button>
+        <button class="button digit" id="6">6</button>
+        <button class="button operator" id="X">X</button>
+            
+            
+            
+        <button class="button digit" id="1">1</button>
+        <button class="button digit" id="2">2</button>
+        <button class="button digit" id="3">3</button>
+        <button class="button operator" id="-">-</button>
+
+            
+
+            
+        <button class="button digit" id="0">0</button>
+        <button class="button digit" id=".">.</button>
+        <button class="button" id="equal">=</button>
+        <button class="button operator" id="+">+</button>
+
+            
+            
+            
+            
+            
+            
+            
+            
+
+        
+    </div>
+
+
+
+    </div>
+    <p class="txtlow">(c) George Random, 1999 </p>
+
+
+</body>
+<script>
+var upperNum =""
+var lowerNum =""
+var LastNum
+var LastOp
+var LineSwitch = 0
+var a
+var b
+var isResult
+var negator=1
+
+const disp1 = document.getElementById("disp1");
+const disp2 = document.getElementById("disp2");
+const digits = document.querySelectorAll(".digit");
+const operators= document.querySelectorAll(".operator");
+const equal=document.getElementById("equal");
+const clearBtn=document.getElementById("clear")
+const plusMinus=document.getElementById("plusmin")
+const back=document.getElementById("Backspace")
+
+
+
+
+window.addEventListener("keydown",function(event){
+    
+    if (event.key==="*"){document.getElementById("X").click()}
+    else if (event.key==="-" && (upperNum.length===0 || LastOp!==undefined )){plusMinus.click()}
+
+    
+        
+
+
+    else if (document.getElementById(`${event.key}`)!==null ){
+    console.log(event)
+        document.getElementById(`${event.key}`).click()}
+    else if(event.key==="Enter"){equal.click()}
+    
+
+})
+
+
+
+digits.forEach(function(currentDig){
+    currentDig.addEventListener('click', function(currentDig){
+        reveal(currentDig)
+        }
+    )
+    });
+operators.forEach(function(currentOp){
+currentOp.addEventListener('click', function(currentOp){
+    if (upperNum.length!==0){
+        storeOp(currentOp)}
+        }
+    )
+    });
+equal.addEventListener('click',function(){
+    if (b!==undefined && LastOp!==undefined)
+        a = (operate(a,b,LastOp));
+        if (a !=="panic"){
+            lowerNum = "";
+            upperNum = ((Math.floor(a*100000000000000000))/100000000000000000).toString();
+            disp1.textContent = upperNum;
+            disp2.textContent = ""
+            disp3.textContent =""
+            LineSwitch=0
+            isResult = 1
+            b = 0
+            LastOp=undefined
+            }
+        }
+
+        
+        
+        )
+clearBtn.addEventListener('click',function(){clear()})
+plusMinus.addEventListener('click',function(){plusmin()})
+back.addEventListener('click',function(){backFn()})
+
+function backFn(){
+    if (LineSwitch===0){ 
+        
+        upperNum = upperNum.slice(0,-1)
+        disp1.textContent = upperNum
+        a = parseFloat(upperNum)
+    }
+    else {if (lowerNum.length>0){
+            lowerNum = lowerNum.slice(0,-1)
+            disp3.textContent = lowerNum
+            b = parseFloat(lowerNum)
+            
+            }
+        else {removeOperator()}
+        }
+
+    
+}
+        
+
+function clear (){
+    
+    upperNum =""
+    lowerNum =""
+    LastOp = undefined
+    a= undefined
+    b=undefined
+    LineSwitch = 0
+    disp1.textContent = "";
+    disp2.textContent = "";
+    disp3.textContent ="";
+
+    
+
+}
+function removeOperator(){
+    LastOp = undefined;
+    disp2.textContent ="";
+    LineSwitch=0
+
+
+
+
+}
+function plusmin(){
+    if (LineSwitch === 0){
+            if (a>0){
+                upperNum = (-upperNum).toString()
+                disp1.textContent = "- " + disp1.textContent;
+                a = parseFloat(upperNum)
+                }
+            else if (a<0){
+                upperNum = (-upperNum).toString()
+                disp1.textContent = upperNum;
+                a = parseFloat(upperNum)
+                }
+            else {
+                disp1.textContent = "-"
+                upperNum="-"
+                
+
+            }
+
+            }
+    else if (LineSwitch===1 ){
+                if (b>0){
+                    lowerNum = (-lowerNum).toString()
+                    disp3.textContent = "- " + disp3.textContent;
+                    b = parseFloat(lowerNum)
+                    }
+                else if (b<0){
+                    lowerNum = (-lowerNum).toString()
+                    disp3.textContent = lowerNum;
+                    b = parseFloat(lowerNum)
+                    }
+                else {
+                disp3.textContent = "-"
+                lowerNum="-"
+                }
+            
+    }
+            
+
+}
+
+function reveal(currentDig){
+    LastNum = currentDig.target.id;
+    if (isResult ===1){clear();
+                    isResult=0;
+                    upperNum = LastNum;
+        disp1.textContent = upperNum;
+        a = parseFloat(upperNum)
+                        }
+    else {if (LineSwitch === 0){
+            upperNum = upperNum + LastNum
+            disp1.textContent += LastNum;
+            a = parseFloat(upperNum)
+            }
+        if (LineSwitch === 1){
+            lowerNum = lowerNum + LastNum;
+            disp3.textContent += LastNum;
+            b = parseFloat(lowerNum)
+        }
+
+    }
+
+
+    
+
+        
+}
+function storeOp(currentOp){
+    LastOp = currentOp.target.id;
+    if (LineSwitch ===0){
+        LineSwitch = 1;
+        disp2.textContent = ` ${LastOp}`
+        isResult = 0
+    }
+    
+   
+    
+}
+
+
+
+
+
+function add(a,b){
+    return a+b
+}
+function substract(a,b){
+    return a-b
+}
+function mult(a,b){
+    return a*b
+}
+function divide(a,b){
+    if (b!==0) return a/b
+    else {panic();
+        disp1.textContent = "AAAAARGH!!!!!";
+        return "panic"}
+
+}
+function panic(){
+    var cont = document.querySelector(".calcContainer")
+    var btns = document.querySelectorAll(".button")
+    btns.forEach(function(but){
+        but.classList.add("marave")
+    
+    })
+    cont.classList.add("broken")
+    
+}
+
+function operate(a,b,c){
+    if (c==="+") return add(a,b);
+    if (c==="-") return substract(a,b);
+    if (c==="/") return divide(a,b);
+    if (c==="X") return mult(a,b);
+    
+}
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

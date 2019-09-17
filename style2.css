@@ -1,0 +1,115 @@
+html { background-image: linear-gradient(beige,rgb(245, 214, 158))
+}
+
+
+body{
+    height: 90vh;
+    width: 90vw;
+    ;
+}
+h1{ font-size: 2em;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-shadow: 2px 0 0 yellow, -2px 0 0 red, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+
+}
+.container {
+    height: 80%;
+    width: 100%;
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+    
+
+}
+.calcContainer{
+    height : 60%;
+    max-width: 30%;
+    color: rgb(184, 183, 183);
+    
+    display: grid;
+    grid-gap: 2px 2px;
+    border: 1px solid black;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1.5fr repeat(5, 1fr);
+    background: black;
+    border-radius: 25px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 0.7%;
+    padding-right: 0.7%;
+    box-shadow: 8px 8px 0px 0px;
+    transition: max-width 10s, height 10s, grid-gap 8s, box-shadow 15s, color 4s;  
+    transition-delay: 10s,10s,4s,2s, 0s;
+    transition-property: max-width, height, grid-gap, box-shadow, color;  
+    
+    
+    
+    
+    
+
+}
+.broken{
+    height: 5px;
+    color: black;
+    grid-gap: 17vw 17vw;
+    box-shadow: 8px 8px 0px 1200px;
+    max-width : 90%;
+    
+    
+    
+    
+    
+    
+}
+#display{
+    font-size: large;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    grid-column: span 4;
+    text-align: right;
+    background-color: rgb(217, 255, 161);
+    color: black;
+    border: 2px solid black;
+    font-size: 2.5vh;
+    font-weight: bolder;
+    height: 10vh;
+    padding-right: 8px;
+    margin-right: 2px;
+    
+}
+#clear{
+    grid-column: span 2;
+}
+
+
+.button {
+    color: white;
+    
+    grid-column: auto / auto;
+    grid-row: auto / auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 2s all;
+    font-size: 2.2vw;
+    border-radius: 1vw;
+    text-shadow: 1px 2px black;
+    transition-property: opacity, font-size;
+    transition-delay: 10s, 8s;
+    
+    
+    background: rgb(158, 158, 158);
+    height: auto;
+    width: auto;
+    opacity: 1;
+}
+.marave {
+    
+    opacity: 0;
+    font-size: 1px;
+
+    
+}
